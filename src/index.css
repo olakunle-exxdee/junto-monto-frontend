@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'ClashDisplay-Medium';
+  src: url(../public/fonts/ClashDisplay-Medium.woff);
+}
+@font-face {
+  font-family: 'ClashDisplay-Regular';
+  src: url(../public/fonts/ClashDisplay-Regular.woff);
+}
+@font-face {
+  font-family: 'Satoshi-Regular';
+  src: url('../public/fonts/Satoshi-Regular.woff');
+}
+@font-face {
+  font-family: 'Satoshi-Bold';
+  src: url('../public/fonts/Satoshi-Bold.woff');
+}
