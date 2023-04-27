@@ -9,7 +9,7 @@ const people = [
 
 export default function Example() {
   return (
-    <div className='col-span-1 sm:col-span-full md:col-span-1 lg:col-span-1 '>
+    <div className='col-span-1 mt-12 sm:col-span-full md:col-span-1 lg:col-span-1  '>
       <fieldset>
         <legend className='text-base font-semibold leading-6 text-gray-900'>
           Members
