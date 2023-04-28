@@ -1,7 +1,5 @@
-
-
 const gendeCategory = ['male', 'female'];
-export default function Example() {
+export default function FilterCombo() {
   return (
     <div className='flex'>
       <label

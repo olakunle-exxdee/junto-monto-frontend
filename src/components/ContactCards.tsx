@@ -1,18 +1,20 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid';
 import CardHeader from './CardHeader';
 import Pagination from './Pagination';
+import '../App.css';
 
-import useData from '../assets/useData';
-
-export default function Example() {
-  const [data] = useData();
-
+import { Root } from '../vite-env';
+interface Props {
+  data: Root[];
+  filterByGender: (name: string) => void;
+}
+export default function ContactCards({ data, filterByGender }: Props) {
   return (
-    <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3 '>
-      <CardHeader />
+    <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
+      <CardHeader filterByGender={filterByGender} />
       <ul
         role='list'
-        className='grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+        className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'">
         {data.map((person) => (
           <li
             key={person.id}
@@ -21,7 +23,7 @@ export default function Example() {
               <img
                 className='mx-auto h-32 w-32 flex-shrink-0 rounded-full'
                 src={person.picture.large}
-                alt=''
+                alt={person.name.last}
               />
               <h3 className='mt-6 text-sm font-medium capitalize text-gray-900'>
                 {person.name.first} {''} {person.name.last}
