@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Root } from '../vite-env';
 
 const useData = () => {
@@ -13,25 +13,12 @@ const useData = () => {
       const data = await response.json();
       setData(data);
       setLoading(false);
-    } catch (error: any | unknown) {
+    } catch (error: any) {
       setError(error);
     } finally {
       setLoading(false);
     }
   };
-
-  // const filterByState = useCallback(
-  //   (stateName: string) => {
-  //     console.log(stateName, 'statename');
-
-  //     stateName
-  //       ? setData(
-  //           data.filter((item: Root) => item.location.state === stateName)
-  //         )
-  //       : setData(data);
-  //   },
-  //   [data]
-  // );
 
   useEffect(() => {
     getData();

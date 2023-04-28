@@ -44,8 +44,6 @@ export default function FilterSiderBar({ filterByState }: Props) {
     setVisible(visible + 5);
   };
 
-  console.log(state);
-
   return (
     <div className='col-span-1 mt-12 sm:col-span-full md:col-span-1 lg:col-span-1  '>
       <fieldset>
