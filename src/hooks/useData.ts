@@ -6,10 +6,14 @@ const useData = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
+  console.log(import.meta.env.MODE);
+
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:3003/results');
+      const response = await fetch(
+        'https://powerful-suit-newt.cyclic.app/results'
+      );
       const data = await response.json();
       setData(data);
       setLoading(false);
