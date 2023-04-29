@@ -9,8 +9,8 @@ function Wrapper() {
   const [people, setPeople] = useState<Root[] | []>([]);
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
-  const [stateData, setStateData] = useState<Root[] | []>([]);
-  const [genderData, setGenderData] = useState<Root[] | []>([]);
+  // const [stateData, setStateData] = useState<Root[] | []>([]);
+  // const [genderData, setGenderData] = useState<Root[] | []>([]);
 
   // const filterDatas = ({ state, gender }: FilterProps) => {
   //   const statef = state
