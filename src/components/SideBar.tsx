@@ -69,9 +69,12 @@ export default function FilterSiderBar({ filterByState }: Props) {
                   className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
                   value={person}
                   onClick={(e) => {
-                    const { target } = e;
+                    const { target, detail } = e;
                     const { name } = target as HTMLInputElement;
-                    setState(name);
+
+                    detail >= 2 ? setState('') : setState(name);
+
+                    console.log(e.detail);
                   }}
                   onChange={(e) => filterByState(e.target.value)}
                 />

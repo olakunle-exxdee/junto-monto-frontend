@@ -3,8 +3,6 @@ import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
-import CardHeader from './CardHeader';
-import Pagination from './Pagination';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -42,7 +40,7 @@ function Wrapper() {
     : people;
 
   const filterDataBoth =
-    gender && state
+    gender || state
       ? filterDataState.filter((item: Root) => filterDatagender.includes(item))
       : people;
 
@@ -58,11 +56,8 @@ function Wrapper() {
   return (
     <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
       <FilterSiderBar filterByState={onSelectState} />
-
       <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
-        <CardHeader data={filterDataBoth} filterByGender={onSelectGender} />
-        <ContactCards data={filterDataBoth} />
-        <Pagination />
+        <ContactCards data={filterDataBoth} filterByGender={onSelectGender} />
       </div>
     </div>
   );
