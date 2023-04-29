@@ -1,17 +1,25 @@
+import { Root } from '../vite-env';
+
 interface Props {
   filterByGender: (name: string) => void;
+  data: Root[];
 }
 const gendeCategory = ['male', 'female'];
-export default function CardHeader({ filterByGender }: Props) {
+export default function CardHeader({ filterByGender, data }: Props) {
   return (
     <div className=' flex items-center justify-between border border-gray-200 mb-6 bg-white px-4 py-3 sm:px-6'>
       <div className='sm:flex sm:flex-1 sm:items-center sm:justify-between'>
         <div>
-          <p className='text-sm text-gray-700'>
-            Showing <span className='font-medium'>1</span> to{' '}
-            <span className='font-medium'>200</span> of{' '}
-            <span className='font-medium'>200</span> results
-          </p>
+          {data.length === 0 ? (
+            <p className='text-sm text-gray-700'>
+              <span className='font-medium'>No Results</span>
+            </p>
+          ) : (
+            <p className='text-sm text-gray-700'>
+              Showing <span className='font-medium'>1</span> to{' '}
+              <span className='font-medium'>{data.length}</span> results
+            </p>
+          )}
         </div>
       </div>
       <div className='flex'>

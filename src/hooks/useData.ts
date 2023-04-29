@@ -24,7 +24,9 @@ const useData = () => {
     getData();
   }, []);
 
-  return [data, loading, error] as const;
+  console.log(data);
+
+  return [data, loading, error, setData] as const;
 };
 
 export default useData;

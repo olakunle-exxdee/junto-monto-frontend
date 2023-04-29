@@ -1,17 +1,13 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid';
-import CardHeader from './CardHeader';
-import Pagination from './Pagination';
 import '../App.css';
 
 import { Root } from '../vite-env';
 interface Props {
   data: Root[];
-  filterByGender: (name: string) => void;
 }
-export default function ContactCards({ data, filterByGender }: Props) {
+export default function ContactCards({ data }: Props) {
   return (
-    <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
-      <CardHeader filterByGender={filterByGender} />
+    <div className=''>
       <ul
         role='list'
         className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'">
@@ -75,7 +71,6 @@ export default function ContactCards({ data, filterByGender }: Props) {
           </li>
         ))}
       </ul>
-      <Pagination />
     </div>
   );
 }

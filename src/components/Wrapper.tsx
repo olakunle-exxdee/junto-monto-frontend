@@ -3,6 +3,8 @@ import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
+import CardHeader from './CardHeader';
+import Pagination from './Pagination';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -28,25 +30,21 @@ function Wrapper() {
   // };
 
   useEffect(() => {
-    const filterDatagender = gender
-      ? data.filter((item: Root) => item.gender === gender)
-      : data;
-    const filterDataState = state
-      ? data.filter((item: Root) => item.location.state === state)
-      : data;
-    if (gender) {
-      setPeople(filterDatagender);
-    }
-    if (state) {
-      setPeople(filterDataState);
-    } else {
-      setPeople(data);
-    }
-  }, [data, state, gender]);
+    setPeople(data);
+  }, [data]);
 
-  // const filterData = gender
-  //   ? data.filter((item: Root) => item.gender === gender)
-  //   : data;
+  const filterDataState = state
+    ? people.filter((item: Root) => item.location.state === state)
+    : people;
+
+  const filterDatagender = gender
+    ? people.filter((item: Root) => item.gender === gender)
+    : people;
+
+  const filterDataBoth =
+    gender && state
+      ? filterDataState.filter((item: Root) => filterDatagender.includes(item))
+      : people;
 
   const onSelectState = (name: string) => {
     setState(name);
@@ -60,7 +58,12 @@ function Wrapper() {
   return (
     <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
       <FilterSiderBar filterByState={onSelectState} />
-      <ContactCards data={people} filterByGender={onSelectGender} />
+
+      <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
+        <CardHeader data={filterDataBoth} filterByGender={onSelectGender} />
+        <ContactCards data={filterDataBoth} />
+        <Pagination />
+      </div>
     </div>
   );
 }
