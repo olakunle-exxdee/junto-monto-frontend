@@ -36,15 +36,35 @@ export default function Header() {
             <Bars3Icon className='h-6 w-6' aria-hidden='true' />
           </button>
         </div>
-        <div className='hidden lg:flex lg:gap-x-12'>
+        <div className='hidden lg:flex lg:gap-x-12 mb-8'>
           {navigation.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className='text-sm font-semibold leading-6 text-white'>
+              className='text-sm mt-9 font-semibold leading-6 text-white'>
               {item.name}
             </a>
           ))}
+          <div>
+            <label
+              htmlFor='search'
+              className='block text-sm font-medium leading-6 text-gray-900'>
+              Quick search
+            </label>
+            <div className='relative mt-2 flex items-center'>
+              <input
+                type='text'
+                name='search'
+                id='search'
+                className='block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+              />
+              <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
+                <kbd className='inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400'>
+                  ⌘K
+                </kbd>
+              </div>
+            </div>
+          </div>
         </div>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <a href='#' className='text-sm font-semibold leading-6 text-white'>
@@ -87,6 +107,27 @@ export default function Header() {
                     {item.name}
                   </a>
                 ))}
+
+                <div>
+                  <label
+                    htmlFor='search'
+                    className='block text-sm font-medium leading-6 text-gray-900'>
+                    Quick search
+                  </label>
+                  <div className='relative mt-2 flex items-center'>
+                    <input
+                      type='text'
+                      name='search'
+                      id='search'
+                      className='block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+                    />
+                    <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
+                      <kbd className='inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400'>
+                        ⌘K
+                      </kbd>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className='py-6'>
                 <a

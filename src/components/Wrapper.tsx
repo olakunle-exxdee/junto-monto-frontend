@@ -4,6 +4,7 @@ import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
 import ErrorPage from './ErrorPage';
+import Loader from './Loader';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -54,7 +55,7 @@ function Wrapper() {
   };
 
   if (error) return <ErrorPage />;
-  if (loading) return <h1>Loading.....</h1>;
+  if (loading) return <Loader />;
   return (
     <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
       <FilterSiderBar filterByState={onSelectState} />
