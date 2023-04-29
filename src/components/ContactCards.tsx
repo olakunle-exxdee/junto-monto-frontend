@@ -10,7 +10,7 @@ interface Props {
   data: Root[];
   filterByGender: (name: string) => void;
 }
-const itemsPerPage = 50;
+const itemsPerPage = 20;
 export default function ContactCards({ data, filterByGender }: Props) {
   const [itemOffset, setItemOffset] = useState(0);
 

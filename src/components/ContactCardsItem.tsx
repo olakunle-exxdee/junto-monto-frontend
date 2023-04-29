@@ -17,7 +17,7 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
         </h3>
         <dl className='mt-1 flex flex-grow flex-col justify-between'>
           <dt className='sr-only'>Title</dt>
-          <dd className='text-sm text-gray-500'>{person.cell}</dd>
+          <dd className='text-sm text-gray-500'>{person.location.state}</dd>
           <dt className='sr-only'>Role</dt>
           <dd className='mt-3'>
             <span className='rounded-full bg-green-100 px-2 py-1 text-xs capitalize font-medium text-green-800'>

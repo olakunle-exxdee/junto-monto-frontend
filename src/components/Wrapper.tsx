@@ -3,6 +3,7 @@ import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
+import ErrorPage from './ErrorPage';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -37,21 +38,22 @@ function Wrapper() {
 
   const filterDatagender = gender
     ? people.filter((item: Root) => item.gender === gender)
-    : people;
+    : filterDataState;
 
   const filterDataBoth =
-    gender || state
+    state && gender
       ? filterDataState.filter((item: Root) => filterDatagender.includes(item))
-      : people;
-
+      : filterDatagender;
   const onSelectState = (name: string) => {
     setState(name);
+    console.log(name);
+    console.log(Boolean(name));
   };
   const onSelectGender = (name: string) => {
     setGender(name);
   };
 
-  if (error) return <h1>Something went wrong</h1>;
+  if (error) return <ErrorPage />;
   if (loading) return <h1>Loading.....</h1>;
   return (
     <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
