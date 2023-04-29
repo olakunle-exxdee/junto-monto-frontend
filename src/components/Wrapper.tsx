@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import useData from '../services/useData';
+import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
