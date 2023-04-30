@@ -73,7 +73,13 @@ export default function FilterSiderBar({ filterByState }: Props) {
                     const { name } = target as HTMLInputElement;
                     detail > 1 ? setState('') : setState(name);
                   }}
-                  onChange={(e) => filterByState(e.target.value)}
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      console.log('heloo');
+                      console.log(e.target.checked);
+                    }
+                    filterByState(e.target.value);
+                  }}
                 />
               </div>
             </div>

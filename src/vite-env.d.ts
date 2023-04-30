@@ -52,3 +52,5 @@ export interface Picture {
   medium: string;
   thumbnail: string;
 }
+
+VITE_SOME_KEY = 'https://powerful-suit-newt.cyclic.app/results';

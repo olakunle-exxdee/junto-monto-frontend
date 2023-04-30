@@ -47,8 +47,6 @@ function Wrapper() {
       : filterDatagender;
   const onSelectState = (name: string) => {
     setState(name);
-    console.log(name);
-    console.log(Boolean(name));
   };
   const onSelectGender = (name: string) => {
     setGender(name);

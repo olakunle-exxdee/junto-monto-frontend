@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { Root } from '../vite-env';
 
+const url = 'http://localhost:3003/results';
+import.meta.env.MODE === 'development'
+  ? url
+  : 'https://powerful-suit-newt.cyclic.app/results';
+
 const useData = () => {
   const [data, setData] = useState<Root[] | []>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  console.log(import.meta.env.MODE);
-
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        'https://powerful-suit-newt.cyclic.app/results'
-      );
+      const response = await fetch(url);
       const data = await response.json();
       setData(data);
       setLoading(false);
