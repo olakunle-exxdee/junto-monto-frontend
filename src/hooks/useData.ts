@@ -14,7 +14,9 @@ const useData = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(url);
+      const response = await fetch(
+        'https://powerful-suit-newt.cyclic.app/results'
+      );
       const data = await response.json();
       setData(data);
       setLoading(false);
