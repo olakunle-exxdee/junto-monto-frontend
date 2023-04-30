@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Root } from '../vite-env';
 
 const url = 'http://localhost:3003/results';
-import.meta.env.MODE === 'development'
-  ? url
-  : 'https://powerful-suit-newt.cyclic.app/results';
+import.meta.env.MODE === 'production'
+  ? 'https://powerful-suit-newt.cyclic.app/results'
+  : url;
 
 const useData = () => {
   const [data, setData] = useState<Root[] | []>([]);

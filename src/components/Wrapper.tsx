@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
@@ -11,27 +11,34 @@ function Wrapper() {
   const [people, setPeople] = useState<Root[] | []>([]);
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
-  // const [stateData, setStateData] = useState<Root[] | []>([]);
-  // const [genderData, setGenderData] = useState<Root[] | []>([]);
 
-  // const filterDatas = ({ state, gender }: FilterProps) => {
-  //   const statef = state
-  //     ? data.filter((item: Root) => item.location.state === state)
-  //     : data;
-  //   const genderf = gender
-  //     ? data.filter((item: Root) => item.gender === gender)
-  //     : data;
-  //   const result =
-  //     state && gender
-  //       ? statef.filter((item: Root) => genderf.includes(item))
-  //       : statef;
+  const funFilterData = useCallback(
+    (state: string, gender: string) => {
+      const filterDataState = state
+        ? data.filter((item: Root) => item.location.state === state)
+        : data;
 
-  //   return result;
-  // };
+      const filterDatagender = gender
+        ? people.filter((item: Root) => item.gender === gender)
+        : filterDataState;
+
+      const filterDataBoth =
+        state && gender
+          ? filterDataState.filter((item: Root) =>
+              filterDatagender.includes(item)
+            )
+          : data;
+
+      setPeople(filterDataBoth);
+    },
+    [data, people]
+  );
+
+  console.log(Boolean(state), 'sat');
 
   useEffect(() => {
-    setPeople(data);
-  }, [data]);
+    funFilterData(state, gender);
+  }, [data, funFilterData, gender, state]);
 
   const filterDataState = state
     ? people.filter((item: Root) => item.location.state === state)
@@ -43,7 +50,10 @@ function Wrapper() {
 
   const filterDataBoth =
     state && gender
-      ? filterDataState.filter((item: Root) => filterDatagender.includes(item))
+      ? filterDataState.filter(
+          (item: Root) =>
+            item.location.state === state && item.gender === gender
+        )
       : filterDatagender;
   const onSelectState = (name: string) => {
     setState(name);

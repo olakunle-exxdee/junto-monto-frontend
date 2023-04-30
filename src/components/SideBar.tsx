@@ -35,6 +35,7 @@ interface Props {
 
 export default function FilterSiderBar({ filterByState }: Props) {
   const [state, setState] = React.useState('');
+
   const [visible, setVisible] = useState(5);
 
   const showMoreItems = () => {
@@ -65,19 +66,12 @@ export default function FilterSiderBar({ filterByState }: Props) {
                   id={person}
                   name={person}
                   type='checkbox'
-                  checked={person === state}
+                  checked={state === person}
                   className='h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600'
                   value={person}
-                  onClick={(e) => {
-                    const { target, detail } = e;
-                    const { name } = target as HTMLInputElement;
-                    detail > 1 ? setState('') : setState(name);
-                  }}
+                  onDoubleClick={() => setState('')}
                   onChange={(e) => {
-                    if (e.target.checked) {
-                      console.log('heloo');
-                      console.log(e.target.checked);
-                    }
+                    setState(e.target.name);
                     filterByState(e.target.value);
                   }}
                 />
