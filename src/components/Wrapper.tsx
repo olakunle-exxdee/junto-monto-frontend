@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
@@ -11,28 +11,7 @@ function Wrapper() {
   const [people, setPeople] = useState<Root[] | []>([]);
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
-
-  // const funFilterData = useCallback(
-  //   (state: string, gender: string) => {
-  //     const filterDataState = state
-  //       ? data.filter((item: Root) => item.location.state === state)
-  //       : data;
-
-  //     const filterDatagender = gender
-  //       ? people.filter((item: Root) => item.gender === gender)
-  //       : filterDataState;
-
-  //     const filterDataBoth =
-  //       state && gender
-  //         ? filterDataState.filter((item: Root) =>
-  //             filterDatagender.includes(item)
-  //           )
-  //         : data;
-
-  //     setPeople(filterDataBoth);
-  //   },
-  //   [data, people]
-  // );
+  const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     setPeople(data);
@@ -48,19 +27,19 @@ function Wrapper() {
 
   const filterDataBoth =
     state && gender
-      ? people.filter(
-          (person) =>
-            person.gender === gender && person.location.state === state
-        )
+      ? filterDataState.filter((person) => filterDatagender.includes(person))
       : filterDatagender;
+
   const onSelectState = (name: string) => {
     setState(name);
   };
   const onSelectGender = (name: string) => {
     setGender(name);
   };
-
-  console.log(state);
+  const onSearch = (name: string) => {
+    setSearchValue(name);
+  };
+  
 
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
