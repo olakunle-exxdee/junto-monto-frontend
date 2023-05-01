@@ -12,33 +12,31 @@ function Wrapper() {
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
 
-  const funFilterData = useCallback(
-    (state: string, gender: string) => {
-      const filterDataState = state
-        ? data.filter((item: Root) => item.location.state === state)
-        : data;
+  // const funFilterData = useCallback(
+  //   (state: string, gender: string) => {
+  //     const filterDataState = state
+  //       ? data.filter((item: Root) => item.location.state === state)
+  //       : data;
 
-      const filterDatagender = gender
-        ? people.filter((item: Root) => item.gender === gender)
-        : filterDataState;
+  //     const filterDatagender = gender
+  //       ? people.filter((item: Root) => item.gender === gender)
+  //       : filterDataState;
 
-      const filterDataBoth =
-        state && gender
-          ? filterDataState.filter((item: Root) =>
-              filterDatagender.includes(item)
-            )
-          : data;
+  //     const filterDataBoth =
+  //       state && gender
+  //         ? filterDataState.filter((item: Root) =>
+  //             filterDatagender.includes(item)
+  //           )
+  //         : data;
 
-      setPeople(filterDataBoth);
-    },
-    [data, people]
-  );
-
-  console.log(Boolean(state), 'sat');
+  //     setPeople(filterDataBoth);
+  //   },
+  //   [data, people]
+  // );
 
   useEffect(() => {
-    funFilterData(state, gender);
-  }, [data, funFilterData, gender, state]);
+    setPeople(data);
+  }, [data]);
 
   const filterDataState = state
     ? people.filter((item: Root) => item.location.state === state)
@@ -50,9 +48,9 @@ function Wrapper() {
 
   const filterDataBoth =
     state && gender
-      ? filterDataState.filter(
-          (item: Root) =>
-            item.location.state === state && item.gender === gender
+      ? people.filter(
+          (person) =>
+            person.gender === gender && person.location.state === state
         )
       : filterDatagender;
   const onSelectState = (name: string) => {
@@ -61,6 +59,8 @@ function Wrapper() {
   const onSelectGender = (name: string) => {
     setGender(name);
   };
+
+  console.log(state);
 
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
