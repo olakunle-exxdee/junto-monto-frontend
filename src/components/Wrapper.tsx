@@ -11,7 +11,7 @@ function Wrapper() {
   const [people, setPeople] = useState<Root[] | []>([]);
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
-  const [searchValue, setSearchValue] = useState('');
+  // const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
     setPeople(data);
@@ -36,10 +36,9 @@ function Wrapper() {
   const onSelectGender = (name: string) => {
     setGender(name);
   };
-  const onSearch = (name: string) => {
-    setSearchValue(name);
-  };
-  
+  // const onSearch = (name: string) => {
+  //   setSearchValue(name);
+  // };
 
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
