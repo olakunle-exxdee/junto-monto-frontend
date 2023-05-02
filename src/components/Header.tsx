@@ -8,8 +8,11 @@ const navigation = [
   { name: 'Marketplace', href: '#' },
   { name: 'Company', href: '#' },
 ];
+interface Props {
+  onSearch: (name: string) => void;
+}
 
-export default function Header() {
+export default function Header({ onSearch }: Props) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -56,6 +59,7 @@ export default function Header() {
                 type='text'
                 name='search'
                 id='search'
+                onChange={(e) => onSearch(e.target.value)}
                 className='block w-full rounded-md border-0 py-1.5 pr-14 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
               />
               <div className='absolute inset-y-0 right-0 flex py-1.5 pr-1.5'>
