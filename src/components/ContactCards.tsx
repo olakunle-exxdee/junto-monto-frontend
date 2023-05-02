@@ -13,26 +13,33 @@ interface Props {
 const itemsPerPage = 20;
 export default function ContactCards({ data, filterByGender }: Props) {
   const [itemOffset, setItemOffset] = useState(0);
+  console.log(data);
 
   const endOffset = itemOffset + itemsPerPage;
-  // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const currentItems = data.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(data.length / itemsPerPage);
+
+  const pageCount =
+    data.length < 20 ? 1 : Math.ceil(data.length / itemsPerPage);
 
   const handlePageClick = (event: { selected: number }) => {
     const newOffset = (event.selected * itemsPerPage) % data.length;
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
     setItemOffset(newOffset);
   };
   return (
     <div className=''>
-      <CardHeader data={currentItems} filterByGender={filterByGender} />
+      <CardHeader
+        data={currentItems}
+        filterByGender={filterByGender}
+        fullLength={data}
+      />
       <ul
         role='list'
         className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'">
-        {currentItems.map((person) => (
+        {data.slice(itemOffset, endOffset).map((person) => (
           <ContactCardsItem key={person.id} person={person} />
         ))}
       </ul>

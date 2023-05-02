@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useData from '../hooks/useData';
 import ContactCards from './ContactCards';
 import FilterSiderBar from './SideBar';
@@ -14,9 +14,40 @@ function Wrapper() {
   const [gender, setGender] = useState('');
   const [search, setSearch] = useState('');
 
+  const filterDa = useCallback(
+    (
+      data: Root[],
+      state?: string,
+      gender?: string,
+      search?: string
+    ): Root[] => {
+      return data.reduce((acc: Root[], person: Root) => {
+        if (state && person.location.state !== state) {
+          return acc;
+        }
+        if (gender && person.gender !== gender) {
+          return acc;
+        }
+        if (
+          search &&
+          !(
+            person.name.first.toLowerCase().includes(search.toLowerCase()) ||
+            person.name.last.toLowerCase().includes(search.toLowerCase())
+          )
+        ) {
+          return acc;
+        }
+        return [...acc, person];
+      }, []);
+    },
+    []
+  );
+
   useEffect(() => {
-    setPeople(data);
-  }, [data]);
+    const finalData = filterDa(data, state, gender, search);
+
+    setPeople(finalData);
+  }, [data, filterDa, gender, search, state]);
 
   const filterDataState = state
     ? people.filter((item: Root) => item.location.state === state)
@@ -31,14 +62,34 @@ function Wrapper() {
       ? filterDataState.filter((person) => filterDatagender.includes(person))
       : filterDatagender;
 
-  const filterDataSearch = search
-    ? filterDataBoth.filter((person) => {
-        return (
-          person.name.first.toLowerCase().includes(search.toLowerCase()) ||
-          person.name.last.toLowerCase().includes(search.toLowerCase())
-        );
-      })
-    : filterDataBoth;
+  // const filterDataSearch =
+  //   search && gender && state
+  //     ? filterDataBoth.filter((person) => {
+  //         return (
+  //           person.name.first.toLowerCase().includes(search.toLowerCase()) ||
+  //           person.name.last.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //       })
+  //     : search && gender && !state
+  //     ? filterDatagender.filter((person) => {
+  //         return (
+  //           person.name.first.toLowerCase().includes(search.toLowerCase()) ||
+  //           person.name.last.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //       })
+  //     : search && !gender && state
+  //     ? filterDataState.filter((person) => {
+  //         return (
+  //           person.name.first.toLowerCase().includes(search.toLowerCase()) ||
+  //           person.name.last.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //       })
+  //     : people.filter((person) => {
+  //         return (
+  //           person.name.first.toLowerCase().includes(search.toLowerCase()) ||
+  //           person.name.last.toLowerCase().includes(search.toLowerCase())
+  //         );
+  //       });
 
   const onSelectState = (name: string) => {
     setState(name);
@@ -50,12 +101,6 @@ function Wrapper() {
     setSearch(name);
   };
 
-  // const filteredData = data.filter((item) => {
-  //   const genderMatch = selectedGender === 'All' || item.gender === selectedGender;
-  //   const ageMatch = selectedAge === 'All' || item.age.toString() === selectedAge;
-  //   const nameMatch = selectedName === 'All' || item.name === selectedName;
-  //   return genderMatch && ageMatch && nameMatch;}
-
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
   return (
@@ -64,10 +109,7 @@ function Wrapper() {
       <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
         <FilterSiderBar filterByState={onSelectState} />
         <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
-          <ContactCards
-            data={filterDataSearch}
-            filterByGender={onSelectGender}
-          />
+          <ContactCards data={people} filterByGender={onSelectGender} />
         </div>
       </div>
     </>

@@ -80,8 +80,6 @@ export default function FilterSiderBar({ filterByState }: Props) {
                   onChange={(e) => {
                     setState(e.target.value);
                     filterByState(e.target.value);
-
-                    console.log(state === person);
                   }}
                 />
               </div>
