@@ -1,5 +1,5 @@
 import useData from '../hooks/useData';
-import { Root } from '../vite-env';
+
 import { useParams } from 'react-router-dom';
 import ErrorPage from './ErrorPage';
 import Loader from './Loader';
