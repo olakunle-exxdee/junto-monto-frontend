@@ -1,5 +1,6 @@
 import { EnvelopeIcon, PhoneIcon } from '@heroicons/react/20/solid';
 import { Root } from '../vite-env';
+import { Link } from 'react-router-dom';
 
 const ContactCardsItem = ({ person }: { person: Root }) => {
   return (
@@ -16,8 +17,6 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
           {person.name.first} {''} {person.name.last}
         </h3>
         <dl className='mt-1 flex flex-grow flex-col justify-between'>
-          <dt className='sr-only'>Title</dt>
-          <dd className='text-sm text-gray-500'>{person.location.state}</dd>
           <dt className='sr-only'>Role</dt>
           <dd className='mt-3'>
             <span className='rounded-full bg-green-100 px-2 py-1 text-xs capitalize font-medium text-green-800'>
@@ -26,11 +25,11 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
           </dd>
         </dl>
         <div className='my-4'>
-          <button
-            type='button'
+          <Link
+            to={`${person.id}`}
             className='rounded-md bg-green-800 px-2.5 py-1.5 text-sm font-semibold  text-green-100 shadow-sm hover:bg-green-700'>
             More Info
-          </button>
+          </Link>
         </div>
       </div>
       <div>
