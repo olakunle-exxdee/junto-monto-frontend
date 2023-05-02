@@ -6,7 +6,7 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
   return (
     <li
       key={person.id}
-      className='col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow'>
+      className='col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow mb-4'>
       <div className='flex flex-1 flex-col p-8'>
         <img
           className='mx-auto h-32 w-32 flex-shrink-0 rounded-full'
@@ -19,7 +19,7 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
         <dl className='mt-1 flex flex-grow flex-col justify-between'>
           <dt className='sr-only'>Role</dt>
           <dd className='mt-3'>
-            <span className='rounded-full bg-green-100 px-2 py-1 text-xs capitalize font-medium text-green-800'>
+            <span className='rounded-full bg-indigo-100 px-2 py-1 text-xs capitalize font-medium text-indigo-800'>
               {person.gender}
             </span>
           </dd>
@@ -27,7 +27,7 @@ const ContactCardsItem = ({ person }: { person: Root }) => {
         <div className='my-4'>
           <Link
             to={`${person.id}`}
-            className='rounded-md bg-green-800 px-2.5 py-1.5 text-sm font-semibold  text-green-100 shadow-sm hover:bg-green-700'>
+            className='rounded-md bg-indigo-800 px-2.5 py-1.5 text-sm font-semibold  text-indigo-100 shadow-sm hover:bg-indigo-700'>
             More Info
           </Link>
         </div>

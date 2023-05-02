@@ -5,6 +5,7 @@ import FilterSiderBar from './SideBar';
 import { Root } from '../vite-env';
 import ErrorPage from './ErrorPage';
 import Loader from './Loader';
+import Header from './Header';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -50,23 +51,6 @@ function Wrapper() {
     setPeople(finalData);
   }, [data, filterDa, gender, searchValue, state]);
 
-  // useEffect(() => {
-  //   setPeople(data);
-  // }, [data]);
-
-  // const filterDataState = state
-  //   ? people.filter((item: Root) => item.location.state === state)
-  //   : people;
-
-  // const filterDatagender = gender
-  //   ? people.filter((item: Root) => item.gender === gender)
-  //   : filterDataState;
-
-  // const filterDataBoth =
-  //   state && gender
-  //     ? filterDataState.filter((person) => filterDatagender.includes(person))
-  //     : filterDatagender;
-
   const onSelectState = (name: string) => {
     setState(name);
   };
@@ -80,12 +64,15 @@ function Wrapper() {
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
   return (
-    <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
-      <FilterSiderBar filterByState={onSelectState} />
-      <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
-        <ContactCards data={people} filterByGender={onSelectGender} />
+    <>
+      <Header onSearch={onSearch} />
+      <div className='grid grid-cols-1 gap-5 px-12 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4'>
+        <FilterSiderBar filterByState={onSelectState} />
+        <div className='col-span-1 sm:col-span-full md:col-span-3 lg:col-span-3'>
+          <ContactCards data={people} filterByGender={onSelectGender} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

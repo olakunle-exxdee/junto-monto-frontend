@@ -28,7 +28,7 @@ export default function ContactCards({ data, filterByGender }: Props) {
   };
   return (
     <div className=''>
-      <CardHeader data={currentItems} filterByGender={filterByGender} />
+      <CardHeader data={currentItems} filterByGender={filterByGender} fulllength={data} />
       <ul
         role='list'
         className="grid grid-cols-1 gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'">
@@ -37,7 +37,6 @@ export default function ContactCards({ data, filterByGender }: Props) {
         ))}
       </ul>
       <ReactPaginate
-        // className='sm:flex sm:flex-1 sm:items-center sm:justify-center isolate inline-flex -space-x-px rounded-md shadow-sm'
         containerClassName='flex items-center justify-between my-6 border border-gray-200 bg-white px-4 py-3 sm:px-6 '
         previousClassName='relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
         nextClassName='relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50'
