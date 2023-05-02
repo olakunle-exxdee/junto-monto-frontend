@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Root } from '../vite-env';
 
-const url = 'https://powerful-suit-newt.cyclic.app/results';
 const useData = () => {
   const [data, setData] = useState<Root[] | []>([]);
   const [loading, setLoading] = useState(false);
