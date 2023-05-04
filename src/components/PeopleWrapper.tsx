@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import useData from '../hooks/useData';
-import ContactCards from './ContactCards';
-import FilterSiderBar from './SideBar';
+import ContactCards from './PeopleList';
+import FilterSiderBar from './FilterByState';
 import { Root } from '../vite-env';
 import ErrorPage from './ErrorPage';
-import Loader from './Loader';
-import Header from './Header';
+import Loader from './Spinner';
+import Header from './Nav';
 
 function Wrapper() {
   const [data, loading, error] = useData();

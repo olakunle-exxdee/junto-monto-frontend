@@ -1,10 +1,10 @@
 import ReactPaginate from 'react-paginate';
 import '../App.css';
 import { Root } from '../vite-env';
-import ContactCardsItem from './ContactCardsItem';
+import ContactCardsItem from './PeopleItem';
 
 import { useState } from 'react';
-import CardHeader from './CardHeader';
+import CardHeader from './PeopleHeader';
 
 interface Props {
   data: Root[];

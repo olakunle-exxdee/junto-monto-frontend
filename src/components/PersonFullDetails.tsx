@@ -2,7 +2,7 @@ import useData from '../hooks/useData';
 
 import { Link, useParams } from 'react-router-dom';
 import ErrorPage from './ErrorPage';
-import Loader from './Loader';
+import Loader from './Spinner';
 
 export default function ContactDetails() {
   const { id } = useParams();

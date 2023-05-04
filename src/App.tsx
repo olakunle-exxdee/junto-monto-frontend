@@ -1,8 +1,9 @@
 import './App.css';
-import Wrapper from './components/Wrapper';
+import Wrapper from './components/PeopleWrapper';
+
 import { Routes, Route } from 'react-router-dom';
 
-import ContactDetails from './components/ContactDetails';
+import ContactDetails from './components/PersonFullDetails';
 import ErrorPage from './components/ErrorPage';
 
 function App() {
