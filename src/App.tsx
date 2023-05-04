@@ -8,7 +8,7 @@ import ErrorPage from './components/ErrorPage';
 
 function App() {
   return (
-    <div className='app'>
+    <div className='app font-satoshiReg'>
       <Routes>
         <Route path='/' element={<Wrapper />} />
         <Route path='/:id' element={<ContactDetails />} />

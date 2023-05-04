@@ -13,7 +13,6 @@ export default function ContactDetails() {
   if (error) return <ErrorPage />;
 
   const person = data.filter((e) => String(e.id) === id);
-  console.log(person);
 
   return (
     <>

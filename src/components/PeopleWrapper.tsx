@@ -6,6 +6,7 @@ import { Root } from '../vite-env';
 import ErrorPage from './ErrorPage';
 import Loader from './Spinner';
 import Header from './Nav';
+import Footer from './Footer';
 
 function Wrapper() {
   const [data, loading, error] = useData();
@@ -72,6 +73,7 @@ function Wrapper() {
           <ContactCards data={people} filterByGender={onSelectGender} />
         </div>
       </div>
+      <Footer />
     </>
   );
 }

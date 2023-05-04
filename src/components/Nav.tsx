@@ -6,7 +6,7 @@ interface Props {
 
 export default function Header({ onSearch }: Props) {
   return (
-    <header className='bg-indigo-500'>
+    <header className='bg-gray-800'>
       <nav
         className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8 sm:mr-4'
         aria-label='Global'>
@@ -23,7 +23,7 @@ export default function Header({ onSearch }: Props) {
 
         <div className='flexgap-x-12 mb-2 ml-6'>
           <div>
-            <div className='relative mt-2 flex items-center'>
+            <div className='relative  mt-2 flex items-center'>
               <input
                 type='text'
                 name='search'
