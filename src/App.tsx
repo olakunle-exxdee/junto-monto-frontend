@@ -7,6 +7,8 @@ import ContactDetails from './components/PersonFullDetails';
 import ErrorPage from './components/ErrorPage';
 
 function App() {
+  console.log();
+
   return (
     <div className='app font-satoshiReg'>
       <Routes>
