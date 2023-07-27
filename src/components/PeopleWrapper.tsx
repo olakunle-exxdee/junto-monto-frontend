@@ -15,7 +15,7 @@ function Wrapper() {
   const [gender, setGender] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
-  const filterDa = useCallback(
+  const filterData = useCallback(
     (
       data: Root[],
       state?: string,
@@ -47,10 +47,10 @@ function Wrapper() {
   );
 
   useEffect(() => {
-    const finalData = filterDa(data, state, gender, searchValue);
+    const finalData = filterData(data, state, gender, searchValue);
 
     setPeople(finalData);
-  }, [data, filterDa, gender, searchValue, state]);
+  }, [data, filterData, gender, searchValue, state]);
 
   const onSelectState = (name: string) => {
     setState(name);
