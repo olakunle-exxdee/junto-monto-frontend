@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const people = [
   'santa catarina',
@@ -34,7 +34,7 @@ interface Props {
 }
 
 export default function FilterSiderBar({ filterByState }: Props) {
-  const [state, setState] = React.useState('');
+  const [state, setState] = useState('');
   const [visible, setVisible] = useState(5);
 
   const showMoreItems = () => {
@@ -80,7 +80,6 @@ export default function FilterSiderBar({ filterByState }: Props) {
                   onChange={(e) => {
                     setState(e.target.value);
                     filterByState(e.target.value);
-
                   }}
                 />
               </div>
