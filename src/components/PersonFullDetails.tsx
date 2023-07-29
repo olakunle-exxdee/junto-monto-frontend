@@ -8,11 +8,17 @@ export default function ContactDetails() {
   const { id } = useParams();
 
   const [data, loading, error] = useData();
-
   if (loading) return <Loader />;
-  if (error) return <ErrorPage />;
 
-  const person = data.filter((e) => String(e.id) === id);
+  const person = data.filter((e) => {
+    if (id !== String(e.id)) {
+      return <ErrorPage />;
+    } else {
+      return String(e.id) === id;
+    }
+  });
+
+  if (error) return <ErrorPage />;
 
   return (
     <>
