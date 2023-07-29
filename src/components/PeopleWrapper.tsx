@@ -23,8 +23,6 @@ function Wrapper() {
       searchValue?: string
     ): Root[] => {
       return data.reduce((acc: Root[], person: Root) => {
-        console.log(acc);
-
         if (state && person.location.state !== state) {
           return acc;
         }
