@@ -9,10 +9,9 @@ export default function ContactDetails() {
 
   const [data, loading, error] = useData();
 
-  if (loading) return <Loader />;
-  if (error) return <ErrorPage />;
-
   const person = data.filter((e) => String(e.id) === id);
+  if (loading) return <Loader />;
+  if (error || person.length === 0) return <ErrorPage />;
 
   return (
     <>
