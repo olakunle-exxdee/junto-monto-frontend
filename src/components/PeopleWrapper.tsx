@@ -7,20 +7,20 @@ import ErrorPage from './ErrorPage';
 import Loader from './Spinner';
 import Header from './Nav';
 import Footer from './Footer';
+import useDebounce from '../hooks/useDebounce';
 
 function Wrapper() {
   const [data, loading, error] = useData();
   const [people, setPeople] = useState<Root[] | []>([]);
   const [state, setState] = useState('');
   const [gender, setGender] = useState('');
-  const [searchValue, setSearchValue] = useState('');
-
+  const { onSearch, debouncedValue } = useDebounce(2000);
   const filterDa = useCallback(
     (
       data: Root[],
       state?: string,
       gender?: string,
-      searchValue?: string
+      debouncedValue?: string
     ): Root[] => {
       return data.reduce((acc: Root[], person: Root) => {
         if (state && person.location.state !== state) {
@@ -30,12 +30,14 @@ function Wrapper() {
           return acc;
         }
         if (
-          searchValue &&
+          debouncedValue &&
           !(
             person.name.first
               .toLowerCase()
-              .includes(searchValue.toLowerCase()) ||
-            person.name.last.toLowerCase().includes(searchValue.toLowerCase())
+              .includes(debouncedValue.toLowerCase()) ||
+            person.name.last
+              .toLowerCase()
+              .includes(debouncedValue.toLowerCase())
           )
         ) {
           return acc;
@@ -47,10 +49,10 @@ function Wrapper() {
   );
 
   useEffect(() => {
-    const finalData = filterDa(data, state, gender, searchValue);
+    const finalData = filterDa(data, state, gender, debouncedValue);
 
     setPeople(finalData);
-  }, [data, filterDa, gender, searchValue, state]);
+  }, [data, filterDa, gender, debouncedValue, state]);
 
   const onSelectState = (name: string) => {
     setState(name);
@@ -58,9 +60,11 @@ function Wrapper() {
   const onSelectGender = (name: string) => {
     setGender(name);
   };
-  const onSearch = (name: string) => {
-    setSearchValue(name);
-  };
+  // const onSearch = (name: string) => {
+  //   console.log('name', name);
+
+  //   setSearchValue(name);
+  // };
 
   if (error) return <ErrorPage />;
   if (loading) return <Loader />;
