@@ -14,15 +14,16 @@ const useData = (): DataHookReturnType => {
   const getData = async () => {
     setLoading(true);
     try {
-      const response = await fetch(
-        'https://powerful-suit-newt.cyclic.app/results'
-      );
+      const response = await fetch('http://localhost:4000/results');
 
       if (!response.ok) {
+        setError('An Error Ocurred');
         throw new Error('Network response was not ok');
       }
 
       const responseData = await response.json();
+      console.log(responseData);
+
       setData(responseData);
       setError(null);
     } catch (error) {
